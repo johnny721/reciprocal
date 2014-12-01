@@ -1,7 +1,7 @@
 <?php
 
 	ob_start();
-	include('header.php');
+	include('./header.php');
 	$buffer = ob_get_contents();
 	ob_end_clean();
 	// dynamic page title
@@ -28,6 +28,6 @@
 
 <?php
 
-	include('footer.php');
+	include('./footer.php');
 
 ?>
