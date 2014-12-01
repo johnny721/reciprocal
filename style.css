@@ -1,0 +1,22 @@
+#main {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#login {
+	width: 49%;
+	margin: 0 auto;
+	text-align: center;
+	display: inline-block;
+}
+
+#register {
+	width: 49%;
+	margin: 0 auto;
+	text-align: center;
+	display: inline-block;
+}
+
+.field {
+	margin: 10px 0;
+}
