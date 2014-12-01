@@ -3,7 +3,7 @@
 	<head>
 		<title>%TITLE% | Reciprocal</title>
 		<link href="style.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./bootstrap.min.css">
 	</head>
 	<body>
 		<div id="main">
@@ -20,7 +20,7 @@
 							<li><a href="submit-recipe.php">Submit a Recipe</a></li>
 						</ul>
 						<ul class="nav navbar-nav" style="float: right">
-							<li><a href="loginform.php">Log In / Register</a></li>
+							<li><a href="login.php">Log In / Register</a></li>
 						</ul>
 					</div>
 				</div>

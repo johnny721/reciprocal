@@ -11,7 +11,7 @@
 ?>
 
 	<div>
-		<a class="btn btn-default" href="./loginform.php">Log In or Register</a>
+		<a class="btn btn-default" href="./login.php">Log In or Register</a>
 	</div>
 	<div id="search">
 		<form action="" method="POST">

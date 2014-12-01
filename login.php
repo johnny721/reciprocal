@@ -10,8 +10,10 @@
 
 ?>
 
-	<div id="login">
-		<h2>Login</h2>
+<div id="login_container">
+	<div id="login_space">
+	</div><div class="styled_box" id="login_login">
+		<h3 class="no_top_margin">Already a user?</h3>
 		<form action="" method="POST">
 			<div class="field">
 				<label>Username</label>
@@ -23,9 +25,9 @@
 			</div>
 			<input class="btn btn-default" id="login_submit" name="login_submit" type="submit" value="Log In">
 		</form>
-	</div>
-	<div id="register">
-		<h2>Register</h2>
+	</div><div id="login_space">
+	</div><div class="styled_box" id="login_register">
+		<h3 class="no_top_margin">First time here?</h3>
 		<form action="" method="POST">
 			<div class="field">
 				<label>Username</label>
@@ -41,7 +43,9 @@
 			</div>
 			<input class="btn btn-default" id="login_submit" name="register_submit" type="submit" value="Register">
 		</form>
+	</div><div id="login_space">
 	</div>
+</div>
 
 <?php
 
