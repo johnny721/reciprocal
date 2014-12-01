@@ -10,6 +10,7 @@
 
 ?>
 
+<div id="index_container">
 	<div>
 		<a class="btn btn-default" href="./login.php">Log In or Register</a>
 	</div>
@@ -25,6 +26,7 @@
 	<div id="submit">
 		<a class="btn btn-default" href="./submit-recipe.php">Submit a Recipe</a>
 	</div>
+</div>
 
 <?php
 

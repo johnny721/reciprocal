@@ -1,3 +1,15 @@
+<?php 
+
+function echoActiveClassIfRequestMatches($requestUri)
+{
+    $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
+
+    if ($current_file_name == $requestUri)
+        echo 'class="active"';
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,14 +26,14 @@
 					</div>
 					<div clss="collapse nav-bar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="./">Home</a></li>
-							<li><a href="#">Browse</a></li>
-							<li><a href="#">Search</a></li>
-							<li><a href="./view-recipe.php">View</a></li>
-							<li><a href="./submit-recipe.php">Submit Recipe</a></li>
+							<li <?=echoActiveClassIfRequestMatches("")?>><a href="./">Home</a></li>
+							<li <?=echoActiveClassIfRequestMatches("browse-recipes")?>><a href="./browse-recipes.php">Browse Recipes</a></li>
+							<li <?=echoActiveClassIfRequestMatches("search-recipes")?>><a href="./search-recipes.php">Search Recipes</a></li>
+							<li <?=echoActiveClassIfRequestMatches("view-recipe")?>><a href="./view-recipe.php">View Recipe</a></li>
+							<li <?=echoActiveClassIfRequestMatches("submit-recipe")?>><a href="./submit-recipe.php">Submit Recipe</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="./login.php">Register / Log In</a></li>
+							<li <?=echoActiveClassIfRequestMatches("login")?>><a href="./login.php">Register / Log In</a></li>
 						</ul>
 					</div>
 				</div>
