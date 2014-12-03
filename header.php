@@ -8,6 +8,8 @@ function echoActiveClass($requestUri)
 		echo 'class="active"';
 }
 
+session_start();
+
 ?>
 
 <!DOCTYPE html>

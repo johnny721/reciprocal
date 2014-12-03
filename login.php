@@ -1,12 +1,26 @@
 <?php
 
 	ob_start();
-	include('./header.php');
+	include_once('./header.php');
 	$buffer = ob_get_contents();
 	ob_end_clean();
 	// dynamic page title
 	$buffer = str_replace("%TITLE%", "Log In", $buffer);
 	echo $buffer;
+
+	require_once('./LoginService.php');
+
+	if (isset($_POST['login_submit'])) {
+		$username = $_POST['login_username'];
+		$password = $_POST['login_password'];
+		// To protect MySQL injection for security purpose
+
+
+		$myLoginService = new LoginService();
+		echo ($myLoginService -> validate($username, $password));
+	}
+
+	echo($_SESSION['login_user']);
 
 ?>
 
