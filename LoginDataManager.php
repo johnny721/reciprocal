@@ -1,23 +1,27 @@
 <?php
-class LoginDataManager{
 
-	public function getLoginInfo($username, $password){
-		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
-		$connection = mysqli_connect("localhost", "root", "", "cs2043team4aDB");
-		// SQL query to fetch information of registerd users and finds user match.
+	class LoginDataManager{
 
-		$username = stripslashes($username);
-		$password = stripslashes($password);
-		$username = $connection->real_escape_string($username);
-		$password = $connection->real_escape_string($password);
+		public function getLoginInfo($username, $password){
+			// establishing connection
+			$connection = mysqli_connect("localhost", "root", "", "cs2043team4aDB");
 
-		$query = $connection->query("select * from UserRecordTable where password='$password' AND userName='$username'");
-		$rows = $query->num_rows;
-		$connection->close(); // Closing Connection
-		if ($rows == 1)
-			return true;
-		else
-			return false;
-		}
-}
+			// protect against injection attacks
+			$username = stripslashes($username);
+			$password = stripslashes($password);
+			$username = $connection->real_escape_string($username);
+			$password = $connection->real_escape_string($password);
+
+			// SQL query to fetch information of registerd users and finds user match
+			$query = $connection->query("select * from UserRecordTable where password='$password' AND userName='$username'");
+			$rows = $query->num_rows;
+			$connection->close(); // closing Connection
+			
+			if ($rows == 1)
+				return true;
+			else
+				return false;
+			}
+	}
+
 ?>

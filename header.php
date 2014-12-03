@@ -1,14 +1,16 @@
-<?php 
+<?php
 
-function echoActiveClass($requestUri)
-{
-	$current_file = substr($_SERVER['REQUEST_URI'], strrpos($_SERVER['REQUEST_URI'], '/') + 1);
+	// start session if not started
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
 
-	if ($current_file == $requestUri)
-		echo 'class="active"';
-}
+	function echoActiveClass($requestUri) {
+		$current_file = substr($_SERVER['REQUEST_URI'], strrpos($_SERVER['REQUEST_URI'], '/') + 1);
 
-session_start();
+		if ($current_file == $requestUri)
+			echo 'class="active"';
+	}
 
 ?>
 
@@ -17,7 +19,7 @@ session_start();
 	<head>
 		<title>%TITLE% | Reciprocal</title>
 		<link href="./css/style.css" rel="stylesheet" type="text/css">
-		<link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div id="main">
@@ -34,8 +36,13 @@ session_start();
 							<li <?php echoActiveClass("view-recipe.php")?>><a href="./view-recipe.php">View Recipe</a></li>
 							<li <?php echoActiveClass("submit-recipe.php")?>><a href="./submit-recipe.php">Submit Recipe</a></li>
 						</ul>
+						
 						<ul class="nav navbar-nav navbar-right">
+						<?php if (!(isset($_SESSION['login_user']))) { ?>
 							<li <?php echoActiveClass("login.php")?>><a href="./login.php">Register / Log In</a></li>
+							<?php } else { ?>
+							<li><a href="./logout.php">Log Out</a></li>
+							<?php } ?>
 						</ul>
 					</div>
 				</div>

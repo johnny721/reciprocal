@@ -29,6 +29,11 @@
 	margin-bottom: 25px;
 }
 
+.alert {
+	margin-top: 15px;
+	margin-bottom: 0 !important;
+}
+
 #main {
 	max-width: 80%;
 	margin: 10px auto;

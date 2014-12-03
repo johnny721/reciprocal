@@ -1,26 +1,33 @@
 <?php
 
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+
+	// handle login
+	if (isset($_POST['login_submit'])) {
+		require_once('./LoginService.php');
+
+		// get POST data
+		$username = $_POST['login_username'];
+		$password = $_POST['login_password'];
+
+		$myLoginService = new LoginService();
+		$loginResult = $myLoginService -> validate($username, $password);
+	}
+
+	// handle register
+	if (isset($_POST['register_submit'])) {
+		//require_once('./RegisterService.php');
+	}
+
+	// header & dynamic page title
 	ob_start();
 	include_once('./header.php');
 	$buffer = ob_get_contents();
 	ob_end_clean();
-	// dynamic page title
 	$buffer = str_replace("%TITLE%", "Log In", $buffer);
 	echo $buffer;
-
-	require_once('./LoginService.php');
-
-	if (isset($_POST['login_submit'])) {
-		$username = $_POST['login_username'];
-		$password = $_POST['login_password'];
-		// To protect MySQL injection for security purpose
-
-
-		$myLoginService = new LoginService();
-		echo ($myLoginService -> validate($username, $password));
-	}
-
-	echo($_SESSION['login_user']);
 
 ?>
 
@@ -55,6 +62,13 @@
 			</div>
 			<input class="btn btn-default" id="login_submit" name="login_submit" type="submit" value="Log In">
 		</form>
+		<?php if (isset($_POST['login_submit']) && !$loginResult) {?>
+		<div class="alert alert-danger" role="alert">
+		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		  <span class="sr-only">Error:</span>
+		  Invalid username or password
+		</div>
+		<?php } ?>
 	</div><div id="login_space">
 	</div>
 </div>
