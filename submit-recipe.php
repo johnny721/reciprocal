@@ -8,6 +8,8 @@
 	$buffer = str_replace("%TITLE%", "Submit Recipe", $buffer);
 	echo $buffer;
 
+	if (isset($_SESSION['login_user'])) {
+
 ?>
 
 <div class="styled_box" id="sr_container">
@@ -78,6 +80,20 @@
 </div>
 
 <?php
+
+	} else {
+
+?>
+
+<div class="alert alert-danger" role="alert">
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<span class="sr-only">Error:</span>
+	You must be logged in to submit a recipe
+</div>
+
+<?php
+
+	}
 
 	include('./footer.php');
 
