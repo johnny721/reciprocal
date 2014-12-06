@@ -6,19 +6,28 @@
 
 	// handle login
 	if (isset($_POST['login_submit'])) {
-		require_once('./LoginService.php');
+		require_once('./AccountService.php');
 
 		// get POST data
 		$username = $_POST['login_username'];
 		$password = $_POST['login_password'];
 
-		$myLoginService = new LoginService();
-		$loginResult = $myLoginService -> validate($username, $password);
+		$myAccountService = new AccountService();
+		$loginResult = $myAccountService -> validateLogin($username, $password);
 	}
 
 	// handle register
 	if (isset($_POST['register_submit'])) {
-		//require_once('./RegisterService.php');
+		require_once('./AccountService.php');
+
+		// get POST data
+		$username = $_POST['register_username'];
+		$password = $_POST['register_password'];
+		$verify = $_POST['register_verify'];
+		$email = $_POST['register_email'];
+
+		$myAccountService = new AccountService();
+		$registerResult = $myAccountService -> validateRegister($username, $password, $verify, $email);
 	}
 
 	// header & dynamic page title
@@ -45,13 +54,20 @@
 				<input id="register_password" name="register_password" placeholder="password" type="password">
 			</div>
 			<div class="login_field">
-				<input id="register_verify_pw" name="register_verify_pw" placeholder="verify password" type="password">
+				<input id="register_verify" name="register_verify" placeholder="verify password" type="password">
 			</div>
 			<div class="login_field">
 				<input id="register_email" name="register_email" placeholder="email" type="email">
 			</div>
 			<input class="btn btn-default" id="register_submit" name="register_submit" type="submit" value="Register">
 		</form>
+		<?php if (isset($_POST['register_submit']) && !$registerResult) {?>
+		<div class="alert alert-danger" role="alert">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Error:</span>
+			Could not register account
+		</div>
+		<?php } ?>
 	</div><div id="login_space">
 	</div><div class="styled_box" id="login_login">
 		<h3 class="no_top_margin">Already a user?</h3>
