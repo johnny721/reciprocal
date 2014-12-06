@@ -1,7 +1,7 @@
 <?php
 
 	// start session if not started
-	if (session_status() == PHP_SESSION_NONE) {
+	if (session_id() == '') {
 		session_start();
 	}
 

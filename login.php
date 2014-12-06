@@ -1,6 +1,6 @@
 <?php
 
-	if (session_status() == PHP_SESSION_NONE) {
+	if (session_id() == '') {
 		session_start();
 	}
 
@@ -28,6 +28,8 @@
 	ob_end_clean();
 	$buffer = str_replace("%TITLE%", "Log In", $buffer);
 	echo $buffer;
+
+	if (!(isset($_SESSION['login_user']))) {
 
 ?>
 
@@ -64,9 +66,9 @@
 		</form>
 		<?php if (isset($_POST['login_submit']) && !$loginResult) {?>
 		<div class="alert alert-danger" role="alert">
-		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		  <span class="sr-only">Error:</span>
-		  Invalid username or password
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Error:</span>
+			Invalid username or password
 		</div>
 		<?php } ?>
 	</div><div id="login_space">
@@ -74,6 +76,20 @@
 </div>
 
 <?php
+
+	} else {
+
+?>
+
+<div class="alert alert-success" role="alert">
+	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+	<span class="sr-only">Success:</span>
+	You are now logged in
+</div>
+
+<?php
+
+	}
 
 	include('./footer.php');
 
