@@ -34,13 +34,13 @@
 							<li <?php echoActiveClass("browse-recipes.php")?>><a href="./browse-recipes.php">Browse Recipes</a></li>
 							<li <?php echoActiveClass("search-recipes.php")?>><a href="./search-recipes.php">Search Recipes</a></li>
 							<li <?php echoActiveClass("view-recipe.php")?>><a href="./view-recipe.php">View Recipe</a></li>
-							<?php if (isset($_SESSION['login_user'])) { ?>
+							<?php if (isset($_SESSION['username'])) { ?>
 							<li <?php echoActiveClass("submit-recipe.php")?>><a href="./submit-recipe.php">Submit Recipe</a></li>
 							<?php } ?>
 						</ul>
 						
 						<ul class="nav navbar-nav navbar-right">
-							<?php if (!(isset($_SESSION['login_user']))) { ?>
+							<?php if (!(isset($_SESSION['username']))) { ?>
 							<li <?php echoActiveClass("login.php")?>><a href="./login.php">Register / Log In</a></li>
 							<?php } else { ?>
 							<li><a href="./logout.php">Log Out</a></li>

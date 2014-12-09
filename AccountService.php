@@ -6,34 +6,38 @@
 		
 		public function validateLogin($username, $password) {
 			if (empty($username) || empty($password)) 
-				return false;
+				return 2;
 			else {
 				$myAccountDataManager = new AccountDataManager();
 
 				if ($myAccountDataManager->checkLoginInfo($username, $password)) {
-					$_SESSION['login_user']=$username; // set session login_user
-					return true;
+					// set session variable
+					$_SESSION['username']=$username;
+					$_SESSION['userId']=$myAccountDataManager->getIdByUsername($username);
+					return 0;
 				}
 				else {
-					return false;
+					return 1;
 				}
 			}
 		}
 
 		public function validateRegister($username, $password, $verify, $email) {
 			if (empty($username) || empty($password) || empty($verify) || empty($email))
-				return false;
+				return 2;
 			else if (strcmp($password, $verify) != 0)
-				return false;
+				return 3;
 			else {
 				$myAccountDataManager = new AccountDataManager();
 
 				if ($myAccountDataManager->createAccount($username, $password, $email)) {
-					$_SESSION['login_user']=$username; // set session login_user
-					return true;
+					// set session variable
+					$_SESSION['username']=$username;
+					$_SESSION['userId']=$myAccountDataManager->getIdByUsername($username);
+					return 0;
 				}
 				else {
-					return false;
+					return 1;
 				}
 			}
 		}

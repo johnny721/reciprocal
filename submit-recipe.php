@@ -8,7 +8,7 @@
 	$buffer = str_replace("%TITLE%", "Submit Recipe", $buffer);
 	echo $buffer;
 
-	if (isset($_SESSION['login_user'])) {
+	if (isset($_SESSION['username'])) {
 
 ?>
 

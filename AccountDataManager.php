@@ -12,7 +12,6 @@
 			$username = $connection->real_escape_string($username);
 			$password = $connection->real_escape_string($password);
 
-			// something is wrong here.. wont log in
 			// SQL query to find matching user
 			$query = $connection->query("SELECT * FROM UserRecordTable WHERE username='$username' AND password='$password';");
 			$rows = $query->num_rows;
@@ -40,6 +39,21 @@
 			$connection->close();
 
 			return $query;
+		}
+
+		public function getIdByUsername($username) {
+			// establishing connection
+			$connection = mysqli_connect("localhost", "cs2043team4a", "cs2043team4a", "cs2043team4aDB");
+
+			// protect against injection attacks
+			$username = stripslashes($username);
+			$username = $connection->real_escape_string($username);
+
+			$query = $connection->query("SELECT userId FROM UserRecordTable WHERE username='$username';");
+			$row = $query->fetch_row();
+			$connection->close();
+			
+			return $row[0];
 		}
 	}
 ?>
