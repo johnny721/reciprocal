@@ -4,8 +4,15 @@
 
 	class RecipeService {
 		
+		public function validateViewRecipe($recipeId) {
+			if (empty($recipeId))
+				return 2;
+			else {
+				$myRecipeDataManager = new RecipeDataManager();
 
-
+				if ($myRecipeDataManager->)
+			}
+		}
 
 
 		public function validateLogin($username, $password) {
