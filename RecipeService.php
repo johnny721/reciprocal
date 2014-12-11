@@ -1,55 +1,31 @@
 <?php
 
+	require_once('./RecipeObj.php');
 	require_once('./RecipeDataManager.php');
 
 	class RecipeService {
 		
 		public function validateViewRecipe($recipeId) {
-			if (empty($recipeId))
-				return 2;
-			else {
-				$myRecipeDataManager = new RecipeDataManager();
+			$myRecipeDataManager = new RecipeDataManager();
+			$recipeInfo = $myRecipeDataManager->getRecipeInfo($recipeId);
 
-				if ($myRecipeDataManager->)
-			}
-		}
+			if (!is_null($recipeInfo)) {
+				$myRecipeObj = new RecipeObj();
 
+				$myRecipeObj->recipeId = $recipeInfo[0];
+				$myRecipeObj->userId = $recipeInfo[1];
+				$myRecipeObj->recipeName = $recipeInfo[2];
+				$myRecipeObj->description = $recipeInfo[3];
+				$myRecipeObj->cuisine = $recipeInfo[4];
+				$myRecipeObj->ingredients = $recipeInfo[5];
+				$myRecipeObj->preparation = $recipeInfo[6];
+				$myRecipeObj->timeMinutes = $recipeInfo[7];
+				$myRecipeObj->imageLink = $recipeInfo[8];
+				$myRecipeObj->submissionTS = $recipeInfo[9];
 
-		public function validateLogin($username, $password) {
-			if (empty($username) || empty($password)) 
-				return 2;
-			else {
-				$myAccountDataManager = new AccountDataManager();
-
-				if ($myAccountDataManager->checkLoginInfo($username, $password)) {
-					// set session variable
-					$_SESSION['username']=$username;
-					$_SESSION['userId']=$myAccountDataManager->getIdByUsername($username);
-					return 0;
-				}
-				else {
-					return 1;
-				}
-			}
-		}
-
-		public function validateRegister($username, $password, $verify, $email) {
-			if (empty($username) || empty($password) || empty($verify) || empty($email))
-				return 2;
-			else if (strcmp($password, $verify) != 0)
-				return 3;
-			else {
-				$myAccountDataManager = new AccountDataManager();
-
-				if ($myAccountDataManager->createAccount($username, $password, $email)) {
-					// set session variable
-					$_SESSION['username']=$username;
-					$_SESSION['userId']=$myAccountDataManager->getIdByUsername($username);
-					return 0;
-				}
-				else {
-					return 1;
-				}
+				return $myRecipeObj;
+			} else {
+				return null;
 			}
 		}
 	}

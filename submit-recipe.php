@@ -27,7 +27,17 @@
 				<label for="sr_description">Description *</label>
 			</div>
 			<div>
-				<input id="sr_description" name="sr_description" type="text">
+				<textarea id="sr_description" name="sr_description" rows="5" cols="60"></textarea>
+			</div>
+		</div>
+		<div class="sr_field">
+			<div>
+				<label for="sr_cuisine">Cuisine</label>
+			</div>
+			<div>
+				<select id="sr_cuisine" name="sr_cuisine">
+					<option></option>
+				</select>
 			</div>
 		</div>
 		<div class="sr_field">
@@ -35,7 +45,7 @@
 				<label for="sr_ingredients">Ingredients *</label>
 			</div>
 			<div>
-				<input id="sr_ingredients" name="sr_ingredients" type="text">
+				<textarea id="sr_ingredients" name="sr_ingredients" rows="5" cols="60"></textarea>
 			</div>
 		</div>
 		<div class="sr_field">
@@ -79,7 +89,7 @@
 				<label for="sr_imagelink">Link to Image</label>
 			</div>
 			<div>
-				<input id="sr_imagelink" name="sr_imagelink" type="url">
+				<input id="sr_imagelink" name="sr_imagelink" type="url" size="59">
 			</div>
 		</div>
 		<input class="btn btn-default" id="sr_submit" name="sr_submit" type="submit" value="Submit Recipe">

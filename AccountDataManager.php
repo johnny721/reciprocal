@@ -21,7 +21,7 @@
 				return true;
 			else
 				return false;
-			}
+		}
 
 		public function createAccount($username, $password, $email) {
 			// establishing connection
@@ -50,6 +50,21 @@
 			$username = $connection->real_escape_string($username);
 
 			$result = $connection->query("SELECT userId FROM UserRecordTable WHERE username='$username';");
+			$row = $result->fetch_row();
+			$connection->close();
+			
+			return $row[0];
+		}
+
+		public function getUsernameById($userId) {
+			// establishing connection
+			$connection = mysqli_connect("localhost", "cs2043team4a", "cs2043team4a", "cs2043team4aDB");
+
+			// protect against injection attacks
+			$userId = stripslashes($userId);
+			$userId = $connection->real_escape_string($userId);
+
+			$result = $connection->query("SELECT username FROM UserRecordTable WHERE userId='$userId';");
 			$row = $result->fetch_row();
 			$connection->close();
 			

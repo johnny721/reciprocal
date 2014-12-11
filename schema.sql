@@ -18,7 +18,7 @@ CREATE TABLE RecipeInfoTable (
 	recipeId INT NOT NULL AUTO_INCREMENT,
 	userId INT NOT NULL,
 	recipeName VARCHAR(100) NOT NULL,
-	description VARCHAR(500) NOT NULL,
+	description VARCHAR(1000) NOT NULL,
 	cuisine VARCHAR(20),
 	ingredients VARCHAR(1000) NOT NULL,
 	preparation VARCHAR(5000) NOT NULL,

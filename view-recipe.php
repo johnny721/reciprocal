@@ -8,37 +8,79 @@
 	$buffer = str_replace("%TITLE%", "View Recipe", $buffer);
 	echo $buffer;
 
+	if (isset($_GET['recipeId'])) {
+		require_once('./RecipeService.php');
+
+		// get GET data
+		$recipeId = $_GET['recipeId'];
+
+		$myRecipeService = new RecipeService();
+		$viewRecipeResult = $myRecipeService->validateViewRecipe($recipeId);
+
+		if (!is_null($viewRecipeResult)) {
+			require_once('./AccountService.php');
+
+			$myAccountService = new AccountService();
+			$recipeUsername = $myAccountService->getUsernameById($viewRecipeResult->recipeId);
+
 ?>
 
 <div class="styled_box" id="vr_container">
 	<div>
-		<h3 class="no_top_margin">Recipe Name</h3>
-		<h5>by Username | December 1, 2014</h5>
+		<h3 class="no_top_margin"><?php echo($viewRecipeResult->recipeName); ?></h3>
+		<h5>by <?php echo($recipeUsername); ?> | <?php echo(date('F jS, Y', strtotime($viewRecipeResult->submissionTS))); ?></h5>
 	</div>
-	<img id="vr_image" src='http://www.epicurious.com/images/recipesmenus/2013/2013_october/51193660.jpg'>
+	<img id="vr_image" src="<?php echo($viewRecipeResult->imageLink); ?>">
 	<div class="vr_field">
-		<p class="bold">Ingredients</p>
-		<p>text text text</p>
-	</div>
-	<div class="vr_field">
-		<p class="bold">Cook Time</p>
-		<p>3 hours 35 minutes</p>
+		<p class="bold">Description</p>
+		<p><?php echo($viewRecipeResult->description); ?></p>
 	</div>
 	<div class="vr_field">
 		<p class="bold">Cuisine</p>
-		<p>text text text</p>
+		<p><?php echo($viewRecipeResult->cuisine); ?></p>
 	</div>
 	<div class="vr_field">
-		<p class="bold">Type</p>
-		<p>text text text</p>
+		<p class="bold">Ingredients</p>
+		<p><?php echo($viewRecipeResult->ingredients); ?></p>
 	</div>
 	<div class="vr_field">
-		<p class="bold">Description</p>
-		<p>text text text</p>
+		<p class="bold">Cook Time</p>
+		<p><?php echo($viewRecipeResult->timeMinutes / 60); ?> hours <?php echo($viewRecipeResult->timeMinutes % 60); ?> minutes</p>
+	</div>
+	<div class="vr_field">
+		<p class="bold">Preparation</p>
+		<p><?php echo($viewRecipeResult->preparation); ?></p>
 	</div>
 </div>
 
 <?php
+
+		} else {
+
+?>
+
+<div class="alert alert-danger" role="alert">
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<span class="sr-only">Error:</span>
+	Recipe could not be found
+</div>
+
+<?php
+
+		}
+	} else {
+
+?>
+
+<div class="alert alert-danger" role="alert">
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<span class="sr-only">Error:</span>
+	No recipe selected
+</div>
+
+<?php
+
+	}
 
 	include('./footer.php');
 

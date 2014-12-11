@@ -15,8 +15,7 @@
 					$_SESSION['username']=$username;
 					$_SESSION['userId']=$myAccountDataManager->getIdByUsername($username);
 					return 0;
-				}
-				else {
+				} else {
 					return 1;
 				}
 			}
@@ -35,11 +34,15 @@
 					$_SESSION['username']=$username;
 					$_SESSION['userId']=$myAccountDataManager->getIdByUsername($username);
 					return 0;
-				}
-				else {
+				} else {
 					return 1;
 				}
 			}
+		}
+
+		public function getUsernameById($userId) {
+			$myAccountDataManager = new AccountDataManager();
+			return $myAccountDataManager->getUsernameById($userId);
 		}
 	}
 
