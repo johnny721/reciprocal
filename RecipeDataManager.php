@@ -1,5 +1,7 @@
 <?php
 
+	require_once('./RecipeObj.php');
+
 	class RecipeDataManager{
 
 		public function getRecipeInfo($recipeId) {

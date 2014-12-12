@@ -28,6 +28,10 @@
 				return null;
 			}
 		}
+
+		public function validateSubmitRecipe($myRecipeObj) {
+			
+		}
 	}
 
 ?>

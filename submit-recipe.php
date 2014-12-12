@@ -10,6 +10,39 @@
 
 	if (isset($_SESSION['username'])) {
 
+	// handle submit recipe
+	if (isset($_POST['sr_submit'])) {
+		require_once('RecipeObj.php');
+		require_once('./RecipeService.php');
+
+		// get SESSION data
+		$userId = $_SESSION['userId'];
+
+		// get POST data
+		$recipeName = $_POST['sr_name'];
+		$description = $_POST['sr_description'];
+		$cuisine = $_POST['sr_cuisine'];
+		$ingredients = $_POST['sr_ingredients'];
+		$timeMin = $_POST['sr_time_hr'] * 60 + $_POST['sr_time_min'];
+		$preparation = $_POST['sr_preparation'];
+		$imageLink = $_POST['sr_imageLink'];
+
+		// create object
+		$myRecipeObj = new RecipeObj();
+
+		$myRecipeObj->userId = $userId;
+		$myRecipeObj->recipeName = $recipeName;
+		$myRecipeObj->description = $description;
+		$myRecipeObj->cuisine = $cuisine;
+		$myRecipeObj->ingredients = $ingredients;
+		$myRecipeObj->timeMin = $timeMin;
+		$myRecipeObj->preparation = $preparation;
+		$myRecipeObj->imageLink = $imageLink;
+
+		$myRecipeService = new RecipeService();
+		$submitResult = $myRecipeService->validateSubmitRecipe($myRecipeObj);
+	}
+
 ?>
 
 <div class="styled_box" id="sr_container">
@@ -86,10 +119,10 @@
 		</div>
 		<div class="sr_field">
 			<div>
-				<label for="sr_imagelink">Link to Image</label>
+				<label for="sr_imageLink">Link to Image</label>
 			</div>
 			<div>
-				<input id="sr_imagelink" name="sr_imagelink" type="url" size="59">
+				<input id="sr_imageLink" name="sr_imageLink" type="url" size="59">
 			</div>
 		</div>
 		<input class="btn btn-default" id="sr_submit" name="sr_submit" type="submit" value="Submit Recipe">
