@@ -10,38 +10,67 @@
 
 	if (isset($_SESSION['username'])) {
 
-	// handle submit recipe
-	if (isset($_POST['sr_submit'])) {
-		require_once('RecipeObj.php');
-		require_once('./RecipeService.php');
+		// handle submit recipe
+		if (isset($_POST['sr_submit'])) {
+			require_once('RecipeObj.php');
+			require_once('./RecipeService.php');
 
-		// get SESSION data
-		$userId = $_SESSION['userId'];
+			// get SESSION data
+			$userId = $_SESSION['userId'];
 
-		// get POST data
-		$recipeName = $_POST['sr_name'];
-		$description = $_POST['sr_description'];
-		$cuisine = $_POST['sr_cuisine'];
-		$ingredients = $_POST['sr_ingredients'];
-		$timeMin = $_POST['sr_time_hr'] * 60 + $_POST['sr_time_min'];
-		$preparation = $_POST['sr_preparation'];
-		$imageLink = $_POST['sr_imageLink'];
+			// get POST data
+			$recipeName = $_POST['sr_name'];
+			$description = $_POST['sr_description'];
+			$cuisine = $_POST['sr_cuisine'];
+			$ingredients = $_POST['sr_ingredients'];
+			$timeMinutes = $_POST['sr_time_hr'] * 60 + $_POST['sr_time_min'];
+			$preparation = $_POST['sr_preparation'];
+			$imageLink = $_POST['sr_imageLink'];
 
-		// create object
-		$myRecipeObj = new RecipeObj();
+			// create object
+			$myRecipeObj = new RecipeObj();
 
-		$myRecipeObj->userId = $userId;
-		$myRecipeObj->recipeName = $recipeName;
-		$myRecipeObj->description = $description;
-		$myRecipeObj->cuisine = $cuisine;
-		$myRecipeObj->ingredients = $ingredients;
-		$myRecipeObj->timeMin = $timeMin;
-		$myRecipeObj->preparation = $preparation;
-		$myRecipeObj->imageLink = $imageLink;
+			$myRecipeObj->userId = $userId;
+			$myRecipeObj->recipeName = $recipeName;
+			$myRecipeObj->description = $description;
+			$myRecipeObj->cuisine = $cuisine;
+			$myRecipeObj->ingredients = $ingredients;
+			$myRecipeObj->timeMinutes = $timeMinutes;
+			$myRecipeObj->preparation = $preparation;
+			$myRecipeObj->imageLink = $imageLink;
 
-		$myRecipeService = new RecipeService();
-		$submitResult = $myRecipeService->validateSubmitRecipe($myRecipeObj);
-	}
+			$myRecipeService = new RecipeService();
+			$submitResult = $myRecipeService->validateSubmitRecipe($myRecipeObj);
+
+			if ($submitResult["code"] == 0) {
+				$recipeId = strval($submitResult["insert_id"]);
+				header("Location: ./view-recipe.php?recipeId=$recipeId");
+			} elseif ($submitResult["code"] == 1) {
+
+?>
+
+<div class="alert alert-danger sr_alert" role="alert">
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<span class="sr-only">Error:</span>
+	Unable to submit recipe
+</div>
+
+<?php
+
+			} elseif ($submitResult["code"] == 2) {
+
+?>
+
+<div class="alert alert-danger sr_alert" role="alert">
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<span class="sr-only">Error:</span>
+	Not all required fields are filled
+</div>
+
+<?php
+
+			}
+		}
 
 ?>
 
@@ -52,7 +81,7 @@
 				<label for="sr_name">Recipe Name *</label>
 			</div>
 			<div>
-				<input id="sr_name" name="sr_name" type="text">
+				<input id="sr_name" name="sr_name" type="text" maxlength="100">
 			</div>
 		</div>
 		<div class="sr_field">
@@ -60,7 +89,7 @@
 				<label for="sr_description">Description *</label>
 			</div>
 			<div>
-				<textarea id="sr_description" name="sr_description" rows="5" cols="60"></textarea>
+				<textarea id="sr_description" name="sr_description" rows="5" cols="60" maxlength="1000"></textarea>
 			</div>
 		</div>
 		<div class="sr_field">
@@ -78,7 +107,7 @@
 				<label for="sr_ingredients">Ingredients *</label>
 			</div>
 			<div>
-				<textarea id="sr_ingredients" name="sr_ingredients" rows="5" cols="60"></textarea>
+				<textarea id="sr_ingredients" name="sr_ingredients" rows="5" cols="60" maxlength="1000"></textarea>
 			</div>
 		</div>
 		<div class="sr_field">
@@ -114,7 +143,7 @@
 				<label for="sr_preparation">Preparation *</label>
 			</div>
 			<div>
-				<textarea id="sr_preparation" name="sr_preparation" rows="10" cols="60"></textarea>
+				<textarea id="sr_preparation" name="sr_preparation" rows="10" cols="60" maxlength="5000"></textarea>
 			</div>
 		</div>
 		<div class="sr_field">
@@ -122,7 +151,7 @@
 				<label for="sr_imageLink">Link to Image</label>
 			</div>
 			<div>
-				<input id="sr_imageLink" name="sr_imageLink" type="url" size="59">
+				<input id="sr_imageLink" name="sr_imageLink" type="url" size="59" maxlength="200">
 			</div>
 		</div>
 		<input class="btn btn-default" id="sr_submit" name="sr_submit" type="submit" value="Submit Recipe">
@@ -130,7 +159,6 @@
 </div>
 
 <?php
-
 	} else {
 
 ?>

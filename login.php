@@ -64,14 +64,14 @@
 			</form>
 		</div>
 		<?php if (isset($_POST['register_submit']) && $registerResult != 0) {?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger login_alert" role="alert">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 			<span class="sr-only">Error:</span>
 			<?php if ($registerResult == 1) { ?>
 			Could not register account
-			<?php } else if ($registerResult == 2) { ?>
+			<?php } elseif ($registerResult == 2) { ?>
 			Not all fields are filled
-			<?php } else if ($registerResult == 3) { ?>
+			<?php } elseif ($registerResult == 3) { ?>
 			Passwords do not match
 			<?php } ?>
 		</div>
@@ -91,12 +91,12 @@
 			</form>
 		</div>
 		<?php if (isset($_POST['login_submit']) && $loginResult != 0) {?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger login_alert" role="alert">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 			<span class="sr-only">Error:</span>
 			<?php if ($loginResult == 1) { ?>
 			Invalid username or password
-			<?php } else if ($loginResult == 2) { ?>
+			<?php } elseif ($loginResult == 2) { ?>
 			Not all fields are filled
 			<?php } ?>
 		</div>
@@ -119,7 +119,7 @@
 
 <?php
 
-		header( "refresh:2; url=./" ); 
+		header("refresh:2; url=./");
 
 	}
 

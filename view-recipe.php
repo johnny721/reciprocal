@@ -21,7 +21,7 @@
 			require_once('./AccountService.php');
 
 			$myAccountService = new AccountService();
-			$recipeUsername = $myAccountService->getUsernameById($viewRecipeResult->recipeId);
+			$recipeUsername = $myAccountService->getUsernameById($viewRecipeResult->userId);
 
 ?>
 
@@ -35,17 +35,29 @@
 		<p class="bold">Description</p>
 		<p><?php echo($viewRecipeResult->description); ?></p>
 	</div>
+	<?php if (!empty($viewRecipeResult->cuisine)) { ?>
 	<div class="vr_field">
 		<p class="bold">Cuisine</p>
 		<p><?php echo($viewRecipeResult->cuisine); ?></p>
 	</div>
+	<?php } ?>
 	<div class="vr_field">
 		<p class="bold">Ingredients</p>
 		<p><?php echo($viewRecipeResult->ingredients); ?></p>
 	</div>
 	<div class="vr_field">
 		<p class="bold">Cook Time</p>
-		<p><?php echo($viewRecipeResult->timeMinutes / 60); ?> hours <?php echo($viewRecipeResult->timeMinutes % 60); ?> minutes</p>
+		<p>
+		<?php
+			$timeHours = (int)($viewRecipeResult->timeMinutes / 60);
+			if ($timeHours != 0) {
+				echo($timeHours);
+		?> hours 
+		<?php
+			}
+			echo($viewRecipeResult->timeMinutes % 60);
+		?> minutes
+		</p>
 	</div>
 	<div class="vr_field">
 		<p class="bold">Preparation</p>

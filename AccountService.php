@@ -24,7 +24,7 @@
 		public function validateRegister($username, $password, $verify, $email) {
 			if (empty($username) || empty($password) || empty($verify) || empty($email))
 				return 2;
-			else if (strcmp($password, $verify) != 0)
+			elseif (strcmp($password, $verify) != 0)
 				return 3;
 			else {
 				$myAccountDataManager = new AccountDataManager();

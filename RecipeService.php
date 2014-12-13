@@ -30,7 +30,29 @@
 		}
 
 		public function validateSubmitRecipe($myRecipeObj) {
-			
+			// get object attributes
+			$userId = $myRecipeObj->userId;
+			$recipeName = $myRecipeObj->recipeName;
+			$description = $myRecipeObj->description;
+			$cuisine = $myRecipeObj->cuisine;
+			$ingredients = $myRecipeObj->ingredients;
+			$timeMinutes = $myRecipeObj->timeMinutes;
+			$preparation = $myRecipeObj->preparation;
+			$imageLink = $myRecipeObj->imageLink;
+
+			if (empty($userId) || empty($recipeName) || empty($description) || empty($ingredients) || $timeMinutes == 0 || empty($preparation)) {
+				$array = array("code" => 2, "insert_id" => null);
+			} else {
+				$myRecipeDataManager = new RecipeDataManager();
+				$insertId = $myRecipeDataManager->insertRecipe($myRecipeObj);
+				if ($insertId != 0) {
+					$array = array("code" => 0, "insert_id" => $insertId);
+				} else {
+					$array = array("code" => 1, "insert_id" => null);
+				}
+			}
+
+			return $array;
 		}
 	}
 
