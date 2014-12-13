@@ -13,6 +13,10 @@ textarea {
 	margin-top: 0 !important;
 }
 
+.no_bottom_margin {
+	margin-bottom: 0 !important;
+}
+
 .bold {
 	font-weight: 700;
 }
@@ -27,6 +31,10 @@ textarea {
 
 .sr_field {
 	margin-bottom: 15px;
+}
+
+.vr_rating {
+	margin-top: 20px;
 }
 
 .vr_field {

@@ -12,6 +12,7 @@ class RecipeObj{
 	public $timeMinutes;
 	public $imageLink;
 	public $submissionTS;
+	public $overallRating;
 	
 }
 

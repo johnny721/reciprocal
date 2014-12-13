@@ -25,6 +25,7 @@ CREATE TABLE RecipeInfoTable (
 	timeMinutes INT NOT NULL,
 	imageLink VARCHAR(200),
 	submissionTS TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+	overallRating INT,
 	PRIMARY KEY (recipeId),
 	FOREIGN KEY (userId) REFERENCES UserRecordTable(userId)
 );

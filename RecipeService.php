@@ -22,6 +22,7 @@
 				$myRecipeObj->timeMinutes = $recipeInfo[7];
 				$myRecipeObj->imageLink = $recipeInfo[8];
 				$myRecipeObj->submissionTS = $recipeInfo[9];
+				$myRecipeObj->overallRating = $recipeInfo[10];
 
 				return $myRecipeObj;
 			} else {
