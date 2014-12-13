@@ -49,7 +49,7 @@
 			<h3 class="no_top_margin">First time here?</h3>
 			<form action="" method="POST">
 				<div class="login_field">
-					<input id="register_username" name="register_username" placeholder="choose a username" type="text">
+					<input id="register_username" name="register_username" placeholder="choose a username" type="text" value="<?php echo isset($_POST['register_submit']) ? htmlspecialchars($_POST['register_username']) : '' ?>">
 				</div>
 				<div class="login_field">
 					<input id="register_password" name="register_password" placeholder="password" type="password">
@@ -58,7 +58,7 @@
 					<input id="register_verify" name="register_verify" placeholder="verify password" type="password">
 				</div>
 				<div class="login_field">
-					<input id="register_email" name="register_email" placeholder="email" type="email">
+					<input id="register_email" name="register_email" placeholder="email" type="email" value="<?php echo isset($_POST['register_submit']) ? htmlspecialchars($_POST['register_email']) : '' ?>">
 				</div>
 				<input class="btn btn-default" id="register_submit" name="register_submit" type="submit" value="Register">
 			</form>
@@ -82,7 +82,7 @@
 			<h3 class="no_top_margin">Already a user?</h3>
 			<form action="" method="POST">
 				<div class="login_field">
-					<input id="login_username" name="login_username" placeholder="username" type="text">
+					<input id="login_username" name="login_username" placeholder="username" type="text" value="<?php echo isset($_POST['login_submit']) ? htmlspecialchars($_POST['login_username']) : '' ?>">
 				</div>
 				<div class="login_field">
 					<input id="login_password" name="login_password" placeholder="password" type="password">

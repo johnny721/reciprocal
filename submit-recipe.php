@@ -81,7 +81,7 @@
 				<label for="sr_name">Recipe Name *</label>
 			</div>
 			<div>
-				<input id="sr_name" name="sr_name" type="text" maxlength="100">
+				<input id="sr_name" name="sr_name" type="text" maxlength="100" value="<?php echo isset($_POST['sr_submit']) ? htmlspecialchars($_POST['sr_name']) : '' ?>">
 			</div>
 		</div>
 		<div class="sr_field">
@@ -89,7 +89,7 @@
 				<label for="sr_description">Description *</label>
 			</div>
 			<div>
-				<textarea id="sr_description" name="sr_description" rows="5" cols="60" maxlength="1000"></textarea>
+				<textarea id="sr_description" name="sr_description" rows="5" cols="60" maxlength="1000"><?php echo isset($_POST['sr_submit']) ? htmlspecialchars($_POST['sr_description']) : '' ?></textarea>
 			</div>
 		</div>
 		<div class="sr_field">
@@ -97,8 +97,18 @@
 				<label for="sr_cuisine">Cuisine</label>
 			</div>
 			<div>
-				<select id="sr_cuisine" name="sr_cuisine">
-					<option></option>
+				<select id="sr_cuisine" name="sr_cuisine" value="<?php echo isset($_POST['sr_submit']) ? $_POST['sr_cuisine'] : '' ?>">
+					<option value="">None</option>
+					<option value="american">American</option>
+					<option value="asian">Asian</option>
+					<option value="french">French</option>
+					<option value="greek">Greek</option>
+					<option value="indian">Indian</option>
+					<option value="italian">Italian</option>
+					<option value="jewish">Jewish</option>
+					<option value="mexican">Mexican</option>
+					<option value="middle eastern">Middle Eastern</option>
+					<option value="spanish">Spanish</option>
 				</select>
 			</div>
 		</div>
@@ -107,7 +117,7 @@
 				<label for="sr_ingredients">Ingredients *</label>
 			</div>
 			<div>
-				<textarea id="sr_ingredients" name="sr_ingredients" rows="5" cols="60" maxlength="1000"></textarea>
+				<textarea id="sr_ingredients" name="sr_ingredients" rows="5" cols="60" maxlength="1000"><?php echo isset($_POST['sr_submit']) ? htmlspecialchars($_POST['sr_ingredients']) : '' ?></textarea>
 			</div>
 		</div>
 		<div class="sr_field">
@@ -115,7 +125,7 @@
 				<label for="sr_time_hr">Cook Time *</label>
 			</div>
 			<div>
-				<select id="sr_time_hr" name="sr_time_hr">
+				<select id="sr_time_hr" name="sr_time_hr" value="<?php echo isset($_POST['sr_submit']) ? $_POST['sr_time_hr'] : '' ?>">
 				<?php
 
 				foreach (range(0, 48) as $h) {
@@ -125,7 +135,7 @@
 				?>
 				</select>
 				<span>hours</span>
-				<select id="sr_time_min" name="sr_time_min">
+				<select id="sr_time_min" name="sr_time_min" value="<?php echo isset($_POST['sr_submit']) ? $_POST['sr_time_min'] : '' ?>">
 				<?php
 
 				foreach (range(0, 11) as $n) {
@@ -143,7 +153,7 @@
 				<label for="sr_preparation">Preparation *</label>
 			</div>
 			<div>
-				<textarea id="sr_preparation" name="sr_preparation" rows="10" cols="60" maxlength="5000"></textarea>
+				<textarea id="sr_preparation" name="sr_preparation" rows="10" cols="60" maxlength="5000"><?php echo isset($_POST['sr_submit']) ? htmlspecialchars($_POST['sr_preparation']) : '' ?></textarea>
 			</div>
 		</div>
 		<div class="sr_field">
@@ -151,7 +161,7 @@
 				<label for="sr_imageLink">Link to Image</label>
 			</div>
 			<div>
-				<input id="sr_imageLink" name="sr_imageLink" type="url" size="59" maxlength="200">
+				<input id="sr_imageLink" name="sr_imageLink" type="url" size="59" maxlength="200" value="<?php echo isset($_POST['sr_submit']) ? $_POST['sr_imageLink'] : '' ?>">
 			</div>
 		</div>
 		<input class="btn btn-default" id="sr_submit" name="sr_submit" type="submit" value="Submit Recipe">
@@ -159,6 +169,7 @@
 </div>
 
 <?php
+
 	} else {
 
 ?>
@@ -176,3 +187,12 @@
 	include('./footer.php');
 
 ?>
+
+<script type="text/javascript">
+	$(function()) {
+		// javascript to keep values after POST submission
+		$("#sr_cuisine").val("<?php echo $_POST['sr_cuisine']; ?>");
+		$("#sr_time_hr").val("<?php echo $_POST['sr_time_hr']; ?>");
+		$("#sr_time_min").val("<?php echo $_POST['sr_time_min']; ?>");
+	}
+</script>

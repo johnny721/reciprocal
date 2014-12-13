@@ -30,7 +30,7 @@
 		<h3 class="no_top_margin"><?php echo($viewRecipeResult->recipeName); ?></h3>
 		<h5>by <?php echo($recipeUsername); ?> | <?php echo(date('F jS, Y', strtotime($viewRecipeResult->submissionTS))); ?></h5>
 	</div>
-	<img id="vr_image" src="<?php echo($viewRecipeResult->imageLink); ?>">
+	<img id="vr_image" src="<?php echo($viewRecipeResult->imageLink); ?>" onerror="this.style.display='none';">
 	<div class="vr_field">
 		<p class="bold">Description</p>
 		<p><?php echo($viewRecipeResult->description); ?></p>
@@ -38,7 +38,7 @@
 	<?php if (!empty($viewRecipeResult->cuisine)) { ?>
 	<div class="vr_field">
 		<p class="bold">Cuisine</p>
-		<p><?php echo($viewRecipeResult->cuisine); ?></p>
+		<p><?php echo(ucfirst($viewRecipeResult->cuisine)); ?></p>
 	</div>
 	<?php } ?>
 	<div class="vr_field">
