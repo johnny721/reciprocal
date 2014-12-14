@@ -63,6 +63,48 @@
 
 			return $insertId;
 		}
+
+		public function getSubmissionList($userId) {
+			// establish connection
+			$connection = mysqli_connect("localhost", "cs2043team4a", "cs2043team4a", "cs2043team4aDB");
+
+			// protect against injection attacks
+			$userId = stripslashes($userId);
+			$userId = $connection->real_escape_string($userId);
+
+			$resultArr = array();
+			$count = 0;
+
+			if ($result = $connection->query("SELECT recipeId, userId, recipeName, submissionTS, overallRating FROM RecipeInfoTable WHERE userId = '$userId' ORDER BY recipeName;")) {
+				while ($row = $result->fetch_row()) {
+					$resultArr[$count] = $row;
+					$count++;
+				}
+			}
+
+			$connection->close();
+
+			return $resultArr;
+		}
+
+		public function getRecipeList() {
+			// establish connection
+			$connection = mysqli_connect("localhost", "cs2043team4a", "cs2043team4a", "cs2043team4aDB");
+
+			$resultArr = array();
+			$count = 0;
+
+			if ($result = $connection->query("SELECT recipeId, userId, recipeName, submissionTS, overallRating FROM RecipeInfoTable ORDER BY submissionTS;")) {
+				while ($row = $result->fetch_row()) {
+					$resultArr[$count] = $row;
+					$count++;
+				}
+			}
+
+			$connection->close();
+
+			return $resultArr;
+		}
 	}
 
 ?>

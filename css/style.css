@@ -47,6 +47,11 @@ input, img, textarea {
 	margin-bottom: 0 !important;
 }
 
+.fav_alert {
+	margin-top: 10px;
+	margin-bottom: 0 !important;	
+}
+
 .divider {
 	height: 1px;
 	margin: 10px 0;
@@ -107,6 +112,10 @@ input, img, textarea {
 
 #vc_container {
 	margin-top: 20px;
+}
+
+#yr_submissions {
+	margin-bottom: 20px;
 }
 
 #footer-info {

@@ -111,14 +111,15 @@
 
 ?>
 
-<div class="alert alert-success" role="alert">
+<div class="alert alert-success sc_alert" role="alert">
 	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 	<span class="sr-only">Success:</span>
-	You are now logged in
+	You are now logged in. Redirecting you to the home page...
 </div>
 
 <?php
 
+		header( "refresh:2; url=./" );
 	}
 
 	include('./footer.php');

@@ -12,30 +12,59 @@
 		$favResult = $myReviewService->removeFav($userId, $recipeId);
 	}
 
+	if (isset($_SESSION['userId'])) {
+
 ?>
 
 <div id="fv_container">
-	<?php if (!$myReviewService->checkFavStatus($userId, $recipeId)) { ?>
+	<?php
+
+		if (!$myReviewService->checkFavStatus($userId, $recipeId)) {
+
+	?>
 	<form method='POST'>
 		<input class="btn btn-default" id="favorite_submit" name="favorite_submit" type="submit" value="Favorite">
 	</form>
-	<?php } else { ?>
+	<?php
+
+		} else {
+
+	?>
 	<form method='POST'>
 		<input class="btn btn-default" id="unfavorite_submit" name="unfavorite_submit" type="submit" value="Unfavorite">
 	</form>
-	<?php } ?>
+	<?php
+
+		} 
+
+		if (isset($_favResult) && $favResult == 1) {
+
+	?>
+
+	<div class="alert alert-danger fav_alert" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		Could not perform operation
+	</div>
+
+	<?php
+
+		}
+
+	?>
+
 </div>
 
 <?php
 
-	if (isset($_favResult) && $favResult == 1) {
+	} else {
 
 ?>
 
-<div class="alert alert-danger sc_alert" role="alert">
+<div class="alert alert-danger fav_alert" role="alert">
 	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 	<span class="sr-only">Error:</span>
-	Could not perform operation
+	You must be logged in to favorite a recipe
 </div>
 
 <?php

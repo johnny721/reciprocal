@@ -55,6 +55,52 @@
 
 			return $array;
 		}
+
+		public function getSubmissionList($userId) {
+			$myRecipeDataManager = new RecipeDataManager();
+
+			$recipeArr = $myRecipeDataManager->getSubmissionList($userId);
+
+			if (is_null($recipeArr)) {
+				return NULL;
+			}
+
+			$recipeObjectArr = array();
+
+			for ($count = 0; $count < sizeOf($recipeArr); $count++) {
+				$recipeObjectArr[$count] = new RecipeObj();
+				$recipeObjectArr[$count]->recipeId = $recipeArr[$count][0];
+				$recipeObjectArr[$count]->userId = $recipeArr[$count][1];
+				$recipeObjectArr[$count]->recipeName = $recipeArr[$count][2];
+				$recipeObjectArr[$count]->submissionTS = $recipeArr[$count][3];
+				$recipeObjectArr[$count]->overallRating = $recipeArr[$count][4];
+			}
+
+			return $recipeObjectArr;
+		}
+
+		public function getRecipeList() {
+			$myRecipeDataManager = new RecipeDataManager();
+
+			$recipeArr = $myRecipeDataManager->getRecipeList();
+
+			if (is_null($recipeArr)) {
+				return NULL;
+			}
+
+			$recipeObjectArr = array();
+
+			for ($count = 0; $count < sizeOf($recipeArr); $count++) {
+				$recipeObjectArr[$count] = new RecipeObj();
+				$recipeObjectArr[$count]->recipeId = $recipeArr[$count][0];
+				$recipeObjectArr[$count]->userId = $recipeArr[$count][1];
+				$recipeObjectArr[$count]->recipeName = $recipeArr[$count][2];
+				$recipeObjectArr[$count]->submissionTS = $recipeArr[$count][3];
+				$recipeObjectArr[$count]->overallRating = $recipeArr[$count][4];
+			}
+
+			return array_reverse($recipeObjectArr);
+		}
 	}
 
 ?>

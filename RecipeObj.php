@@ -1,6 +1,6 @@
 <?php
 
-class RecipeObj{
+class RecipeObj {
 
 	public $recipeId;
 	public $userId; 

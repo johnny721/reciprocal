@@ -1,5 +1,6 @@
 <?php
 
+	require_once('./RecipeObj.php');
 	require_once('./CommentObj.php');
 	require_once('./ReviewDataManager.php');
 
@@ -65,6 +66,29 @@
 				return 0;
 			else
 				return 1;
+		}
+
+		public function getFavList($userId) {
+			$myReviewDataManager = new ReviewDataManager();
+
+			$recipeArr = $myReviewDataManager->getFavList($userId);
+
+			if (is_null($recipeArr)) {
+				return NULL;
+			}
+
+			$recipeObjectArr = array();
+
+			for ($count = 0; $count < sizeOf($recipeArr); $count++) {
+				$recipeObjectArr[$count] = new RecipeObj();
+				$recipeObjectArr[$count]->recipeId = $recipeArr[$count][0];
+				$recipeObjectArr[$count]->userId = $recipeArr[$count][1];
+				$recipeObjectArr[$count]->recipeName = $recipeArr[$count][2];
+				$recipeObjectArr[$count]->submissionTS = $recipeArr[$count][3];
+				$recipeObjectArr[$count]->overallRating = $recipeArr[$count][4];
+			}
+
+			return $recipeObjectArr;
 		}
 	}
 
