@@ -25,3 +25,21 @@
 	</form>
 	<?php } ?>
 </div>
+
+<?php
+
+	if (isset($_favResult) && $favResult == 1) {
+
+?>
+
+<div class="alert alert-danger sc_alert" role="alert">
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<span class="sr-only">Error:</span>
+	Could not perform operation
+</div>
+
+<?php
+
+	}
+
+?>
