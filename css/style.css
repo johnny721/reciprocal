@@ -2,9 +2,15 @@ input, img, textarea {
 	max-width: 100%;
 }
 
-p {
+p, h1, h2, h3, h4, h5, h6 {
 	word-wrap: break-word;
 }
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
 .styled_box {
 	padding: 15px;
 	background-color: #F8F8F8;
