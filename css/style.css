@@ -2,6 +2,9 @@ input, img, textarea {
 	max-width: 100%;
 }
 
+p {
+	word-wrap: break-word;
+}
 .styled_box {
 	padding: 15px;
 	background-color: #F8F8F8;
