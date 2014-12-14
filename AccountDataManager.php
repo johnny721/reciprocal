@@ -17,10 +17,7 @@
 			$rows = $result->num_rows;
 			$connection->close(); // closing connection
 			
-			if ($rows == 1)
-				return true;
-			else
-				return false;
+			return ($rows >= 1);
 		}
 
 		public function createAccount($username, $password, $email) {

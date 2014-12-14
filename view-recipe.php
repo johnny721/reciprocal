@@ -28,9 +28,12 @@
 <div class="styled_box" id="vr_container">
 	<div>
 		<h3 class="no_top_margin"><?php echo($viewRecipeResult->recipeName); ?></h3>
-		<h5>by <?php echo($recipeUsername); ?> | <?php echo(date('F jS, Y', strtotime($viewRecipeResult->submissionTS))); ?></h5>
+		<h5>by <?php echo($recipeUsername); ?> | <?php echo(date('M j, Y', strtotime($viewRecipeResult->submissionTS))); ?></h5>
+		<?php if (isset($_SESSION['userId'])) { include_once('./favorite.php'); } ?>
 	</div>
-	<div class="vr_rating">
+	<hr class="divider" />
+	<img id="vr_image" src="<?php echo($viewRecipeResult->imageLink); ?>" onerror="this.style.display='none';">
+	<div class="vr_field" id="vr_rating">
 		<p class="bold">Overall Rating</p>
 		<p>
 		<?php
@@ -42,7 +45,6 @@
 		?>
 		</p>
 	</div>
-	<img id="vr_image" src="<?php echo($viewRecipeResult->imageLink); ?>" onerror="this.style.display='none';">
 	<div class="vr_field">
 		<p class="bold">Description</p>
 		<p><?php echo($viewRecipeResult->description); ?></p>
@@ -79,6 +81,7 @@
 
 <?php
 
+	include_once('./comments.php');
 		} else {
 
 ?>

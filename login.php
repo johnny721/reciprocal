@@ -114,12 +114,10 @@
 <div class="alert alert-success" role="alert">
 	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 	<span class="sr-only">Success:</span>
-	You are now logged in. Redirecting you to the home page...
+	You are now logged in
 </div>
 
 <?php
-
-		header("refresh:2; url=./");
 
 	}
 

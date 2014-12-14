@@ -32,12 +32,13 @@ CREATE TABLE RecipeInfoTable (
 
 CREATE TABLE CommentInfoTable (
 	commentId INT NOT NULL AUTO_INCREMENT,
-	userId INT NOT NULL,
 	recipeId INT NOT NULL,
+	userId INT NOT NULL,
 	commentText VARCHAR(1500),
+	submissionTS TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 	PRIMARY KEY (commentId),
-	FOREIGN KEY (userId) REFERENCES UserRecordTable(userId),
-	FOREIGN KEY (recipeId) REFERENCES RecipeInfoTable(recipeId)
+	FOREIGN KEY (recipeId) REFERENCES RecipeInfoTable(recipeId),
+	FOREIGN KEY (userId) REFERENCES UserRecordTable(userId)
 );
 
 CREATE TABLE RatingInfoTable (

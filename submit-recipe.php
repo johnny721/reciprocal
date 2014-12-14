@@ -12,7 +12,7 @@
 
 		// handle submit recipe
 		if (isset($_POST['sr_submit'])) {
-			require_once('RecipeObj.php');
+			require_once('./RecipeObj.php');
 			require_once('./RecipeService.php');
 
 			// get SESSION data
@@ -29,7 +29,6 @@
 
 			// create object
 			$myRecipeObj = new RecipeObj();
-
 			$myRecipeObj->userId = $userId;
 			$myRecipeObj->recipeName = $recipeName;
 			$myRecipeObj->description = $description;
